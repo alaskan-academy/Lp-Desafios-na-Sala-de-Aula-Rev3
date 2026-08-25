@@ -69,6 +69,7 @@
     text-wrap:balance;
     font-weight:700;
   }
+  h1,h2{text-align:center;}
   p{margin:0 0 1em;}
   ul{margin:0;padding:0;list-style:none;}
   a{color:inherit;}
@@ -265,6 +266,10 @@
     background:var(--mauve-tint);border-radius:var(--radius-l);padding:28px;
   }
   .pillar-num{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:44px;color:var(--mauve-deep);line-height:1;margin-bottom:10px;}
+  .pillar-checklist{display:flex;flex-direction:column;gap:9px;margin:16px 0 0;}
+  .pillar-checklist li{display:flex;gap:9px;align-items:flex-start;font-size:14.5px;color:var(--ink-soft);}
+  .pillar-checklist li svg{flex:none;color:var(--green-deep);margin-top:2px;}
+  .pillar-closing{font-style:italic;font-weight:600;color:var(--ink);font-size:15px;margin:16px 0 0;}
   .pillar-mockup{margin-top:18px;}
   .pillar-mockup img{width:100%;height:auto;display:block;}
 
@@ -411,7 +416,7 @@
     border-bottom:1px dashed var(--line);font-size:15.5px;
   }
   .receipt-row span:first-child{color:var(--ink-soft);}
-  .receipt-row span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .receipt-row span:last-child{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
   .receipt-total{
     display:flex;justify-content:space-between;align-items:center;
     margin-top:18px;background:var(--ink);color:var(--paper);
@@ -724,7 +729,7 @@
     <p class="center" style="max-width:640px;margin:12px auto 0;">O Workshop Desafios na Sala de Aula ensina aquilo que você vê — e também aquilo que pode estar acontecendo por baixo da superfície e influenciando os comportamentos da sua turma.</p>
 
     <figure class="iceberg-infographic">
-      <img src="Fotos/foto-9.webp" alt="Infográfico do Iceberg do Comportamento: o que você vê na superfície e o que pode estar acontecendo por baixo" width="1000" height="1000" loading="lazy">
+      <img src="Fotos/foto-9.webp" alt="Infográfico do Iceberg do Comportamento: o que você vê na superfície e o que pode estar acontecendo por baixo" width="1000" height="1113" loading="lazy">
     </figure>
 
   </div>
@@ -760,7 +765,7 @@
     <h2 class="center">Perfeito para Professoras Iniciantes e Experientes!</h2>
 
     <figure class="hero-photo">
-      <img src="Fotos/foto-11.webp" alt="Linha do tempo: em 7 dias, de aula desafiadora para aula em paz" width="1100" height="880" loading="lazy">
+      <img src="Fotos/foto-11.webp" alt="Linha do tempo: em 7 dias, de aula desafiadora para aula em paz" width="1100" height="866" loading="lazy">
     </figure>
 
     <p>Os comportamentos em sala de aula mudaram muito nos últimos anos. Coisas que funcionavam antes podem já não funcionar como funcionavam.</p>
@@ -778,7 +783,16 @@
       <div class="pillar-card">
         <div class="pillar-num">50+</div>
         <h3>Aulas Sobre os Desafios Reais da Sala de Aula</h3>
-        <p style="color:var(--ink-soft);font-size:15px;">Tenha acesso imediato a um treinamento completo, com 7 módulos sobre o que existe por trás do comportamento, preparação da sala, alunos atípicos, motivação, engajamento e aulas práticas — além de apostila e recursos para usar com seus alunos.</p>
+        <p style="color:var(--ink-soft);font-size:15px;">Um passo a passo para você parar de improvisar diante dos comportamentos difíceis e começar a saber o que fazer antes, durante e depois deles.</p>
+        <ul class="pillar-checklist">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Dar instruções sem precisar repetir 5 vezes</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Criar uma rotina que os alunos entendam e consigam seguir</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Reduzir conversas, interrupções e agitação</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Agir quando um aluno se desregula ou entra em crise</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Lidar melhor com TDAH, TOD, autismo e alunos não verbais</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Conseguir ensinar sem passar a aula apagando incêndios</span></li>
+        </ul>
+        <p class="pillar-closing">Para você voltar a sentir que é professora da turma — e não apenas alguém tentando mantê-la sob controle.</p>
         <div class="pillar-mockup">
           <img src="Fotos/foto-12.webp" alt="Aulas e materiais do Workshop abertos no computador e no celular" loading="lazy">
         </div>
@@ -786,7 +800,17 @@
       <div class="pillar-card">
         <div class="pillar-num">27</div>
         <h3>Situações Reais Respondidas pela Hena</h3>
-        <p style="color:var(--ink-soft);font-size:15px;">Tenha respostas práticas para situações que acontecem de verdade: aluno que foge da sala, não quer participar, não acredita em si mesmo, não consegue trabalhar em grupo, crises, bullying, desmotivação, turmas grandes e até conversas difíceis com as famílias.</p>
+        <p style="color:var(--ink-soft);font-size:15px;">Porque algumas situações são tão específicas que você não quer mais teoria. Você quer abrir uma aula e descobrir: "Hena, o que eu faço quando isso acontece?"</p>
+        <ul class="pillar-checklist">
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>O aluno foge da sala</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Não quer participar porque acha a atividade "chata"</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>A turma é grande e você não consegue dar atenção a todos</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Surgem fofocas, provocações ou bullying</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Uma criança entra em crise no meio da aula</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Você precisa conversar com pais difíceis</span></li>
+          <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Você sente que fez tudo errado e quer recuperar a conexão com a turma</span></li>
+        </ul>
+        <p class="pillar-closing">É como ter uma biblioteca de respostas para aqueles momentos em que você pensa: "Tá… e agora, o que eu faço?"</p>
         <div class="pillar-mockup">
           <img src="Fotos/foto-13.webp" alt="Hena respondendo a uma situação real em vídeo" loading="lazy">
         </div>
