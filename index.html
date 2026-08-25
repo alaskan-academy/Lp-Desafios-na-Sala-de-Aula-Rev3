@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Workshop Desafios na Sala de Aula</title>
+<meta name="description" content="Workshop para professoras aprenderem a entender e conduzir os comportamentos difíceis da sala de aula.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Tokens ---------- */
+  :root{
+    --ink:#2E2F42;
+    --ink-soft:#5B5C78;
+    --ink-faint:#8B8CA6;
+    --cream:#FBF3E6;
+    --paper:#FFFDF9;
+    --line:#E7DCC9;
+
+    --yellow:#FFD65C;
+    --yellow-deep:#B8860A;
+    --yellow-tint:#FFF6DE;
+
+    --coral:#E85D51;
+    --coral-deep:#C43F35;
+    --coral-tint:#FCE7E4;
+
+    --sky:#8FC6E4;
+    --sky-deep:#3E7EA3;
+    --sky-tint:#EAF5FB;
+
+    --mauve:#A87CB0;
+    --mauve-deep:#744D7C;
+    --mauve-tint:#F5EBF6;
+
+    --green:#3FAE6A;
+    --green-deep:#2C8A54;
+    --green-tint:#E7F7ED;
+
+    --radius-s:10px;
+    --radius-m:18px;
+    --radius-l:28px;
+    --shadow-s:0 2px 10px rgba(46,47,66,0.06);
+    --shadow-m:0 12px 32px rgba(46,47,66,0.10);
+    --maxw:720px;
+    --maxw-wide:1040px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:"Nunito",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:78px;
+  }
+  @media(min-width:780px){ body{ padding-bottom:0; } }
+
+  img,svg{max-width:100%;display:block;}
+  h1,h2,h3{
+    font-family:"Baloo 2","Nunito",sans-serif;
+    color:var(--ink);
+    margin:0 0 .5em;
+    text-wrap:balance;
+    font-weight:700;
+  }
+  p{margin:0 0 1em;}
+  ul{margin:0;padding:0;list-style:none;}
+  a{color:inherit;}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 22px;}
+  .container-wide{max-width:var(--maxw-wide);margin:0 auto;padding:0 22px;}
+
+  .section{padding:clamp(48px,8vw,88px) 0;}
+  .section--paper{background:var(--paper);}
+  .section--sky{background:var(--sky-tint);}
+  .section--mauve{background:var(--mauve-tint);}
+  .section--yellow{background:var(--yellow-tint);}
+  .section--ink{background:var(--ink);color:var(--cream);}
+  .section--ink h1,.section--ink h2,.section--ink h3{color:var(--paper);}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:"Nunito",sans-serif;
+    font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--coral-deep);
+    margin-bottom:14px;
+  }
+  .eyebrow.on-ink{color:var(--yellow);}
+  .eyebrow.tone-sky{color:var(--sky-deep);}
+  .eyebrow.tone-mauve{color:var(--mauve-deep);}
+
+  h1{font-size:clamp(30px,5.4vw,46px);line-height:1.14;}
+  h2{font-size:clamp(24px,3.6vw,32px);line-height:1.22;}
+  h3{font-size:clamp(19px,2.6vw,22px);line-height:1.3;}
+  .lead{font-size:19px;color:var(--ink-soft);}
+  .center{text-align:center;}
+
+  /* ---------- Buttons ---------- */
+  .btn-cta{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    background:var(--coral);color:#fff;
+    font-family:"Nunito",sans-serif;
+    font-weight:800;font-size:16.5px;letter-spacing:.01em;
+    padding:18px 30px;border-radius:100px;
+    text-decoration:none;border:none;cursor:pointer;
+    box-shadow:0 10px 24px rgba(200,63,53,.32);
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+    width:100%;text-align:center;
+  }
+  .btn-cta:hover{background:var(--coral-deep);transform:translateY(-2px);box-shadow:0 14px 30px rgba(200,63,53,.4);}
+  .btn-cta:focus-visible{outline:3px solid var(--ink);outline-offset:3px;}
+  @media(min-width:560px){ .btn-cta{width:auto;} }
+  .cta-wrap{display:flex;justify-content:center;margin-top:28px;}
+  .cta-note{text-align:center;font-size:13.5px;color:var(--ink-faint);margin-top:12px;}
+
+  /* ---------- Urgency bar ---------- */
+  .urgency-bar{
+    background:var(--ink);color:var(--paper);
+    text-align:center;font-size:14px;font-weight:600;
+    padding:11px 16px;line-height:1.45;
+  }
+  .urgency-bar strong{color:var(--yellow);}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:clamp(44px,8vw,80px) 0 clamp(40px,7vw,64px);}
+  .hero-badge{
+    display:inline-block;background:var(--coral-tint);color:var(--coral-deep);
+    font-weight:700;font-size:13px;letter-spacing:.03em;text-transform:uppercase;
+    padding:8px 16px;border-radius:100px;margin-bottom:18px;
+  }
+  .hero-photo{margin:24px 0;}
+  .hero-photo img{
+    width:100%;height:auto;border-radius:var(--radius-l);
+    box-shadow:var(--shadow-m);border:6px solid var(--paper);
+  }
+  .pain-list{display:flex;flex-direction:column;gap:12px;margin:26px 0 30px;}
+  .pain-item{
+    display:flex;gap:12px;align-items:flex-start;
+    background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius-m);padding:16px 18px;
+    box-shadow:var(--shadow-s);font-size:16.5px;color:var(--ink-soft);
+  }
+  .pain-item svg{flex:none;color:var(--coral);margin-top:2px;}
+  .hero-statement{
+    font-family:"Baloo 2",sans-serif;font-weight:600;
+    font-size:clamp(20px,3vw,25px);color:var(--ink);
+    text-align:center;line-height:1.45;margin:34px 0 8px;
+  }
+
+  /* ---------- Icon check bullets ---------- */
+  .check-list{display:flex;flex-direction:column;gap:14px;}
+  .check-item{display:flex;gap:12px;align-items:flex-start;font-size:17px;}
+  .check-item svg{flex:none;color:var(--sky-deep);margin-top:3px;}
+  .check-item.final{
+    flex-direction:column;align-items:stretch;
+    margin-top:6px;background:var(--yellow-tint);border:1px solid #F0DFA0;
+    border-radius:var(--radius-m);padding:18px 20px 20px;
+    font-family:"Baloo 2",sans-serif;font-weight:600;font-size:19px;color:var(--ink);
+  }
+  .check-item.final svg{color:var(--yellow-deep);}
+  .final-row{display:flex;gap:12px;align-items:flex-start;}
+  .final-photo{margin-top:18px;}
+  .final-photo img{
+    width:100%;height:auto;display:block;
+    border-radius:var(--radius-m);border:4px solid var(--paper);
+    box-shadow:var(--shadow-s);
+  }
+
+  /* ---------- Flow chips ---------- */
+  .flow-row{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:28px 0;}
+  .flow-chip{
+    background:var(--ink);color:var(--paper);font-weight:700;font-size:14px;
+    padding:10px 16px;border-radius:100px;white-space:nowrap;
+  }
+  .flow-arrow{color:var(--coral);font-weight:800;font-size:18px;}
+
+  /* ---------- Blockquote ---------- */
+  blockquote{
+    margin:18px 0;padding:4px 0 4px 20px;border-left:3px solid var(--coral);
+    font-family:"Baloo 2",sans-serif;font-weight:600;font-size:19px;color:var(--ink-soft);
+  }
+
+  /* ---------- Bio ---------- */
+  .bio-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;}
+  .bio-photo{width:100%;max-width:300px;margin:0 auto;}
+  .bio-photo img{
+    width:100%;height:auto;display:block;
+    border-radius:var(--radius-l);
+    border:6px solid var(--paper);
+    box-shadow:var(--shadow-m);
+  }
+  .bio-name{font-family:"Baloo 2",sans-serif;font-weight:600;font-size:24px;margin-bottom:6px;}
+  .bio-text{text-align:left;max-width:640px;margin:0 auto;}
+
+  /* ---------- Authority: logos & social proof ---------- */
+  .logo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:30px;}
+  @media(min-width:760px){ .logo-grid{grid-template-columns:repeat(4,1fr);} }
+  .logo-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-m);
+    padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:14px;
+    box-shadow:var(--shadow-s);text-align:center;
+  }
+  .logo-card--dark{background:var(--ink);}
+  .logo-card img{height:78px;width:auto;max-width:100%;object-fit:contain;}
+  .logo-caption strong{display:block;font-size:14px;color:var(--ink);}
+  .logo-card--dark .logo-caption strong{color:var(--paper);}
+  .logo-caption span{display:block;font-size:12.5px;color:var(--ink-faint);margin-top:4px;line-height:1.4;}
+  .logo-card--dark .logo-caption span{color:#B9BAD0;}
+
+  .social-proof{
+    max-width:560px;margin:30px auto 0;border-radius:var(--radius-l);
+    overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow-m);
+  }
+  .social-proof img{width:100%;height:auto;display:block;}
+  .social-stat{
+    text-align:center;font-family:"Baloo 2",sans-serif;font-weight:700;
+    font-size:19px;color:var(--mauve-deep);margin:22px 0 0;
+  }
+
+  /* ---------- Transition pull-quote ---------- */
+  .pull-quote{
+    font-family:"Baloo 2",sans-serif;font-weight:600;
+    font-size:clamp(21px,3.4vw,28px);line-height:1.5;text-align:center;color:var(--mauve-deep);
+  }
+
+  /* ---------- Product plate ---------- */
+  .product-plate{
+    background:var(--ink);color:var(--paper);border-radius:var(--radius-l);
+    padding:clamp(32px,6vw,52px);text-align:center;
+  }
+  .product-kicker{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--sky);font-weight:700;margin-bottom:10px;}
+  .product-name{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:clamp(30px,5.4vw,46px);color:var(--paper);margin-bottom:14px;}
+  .product-tag{font-size:18px;color:#D8D9EA;max-width:560px;margin:0 auto 8px;}
+  .product-mockup{margin:8px auto 28px;max-width:520px;}
+  .product-mockup img{width:100%;height:auto;display:block;}
+
+  /* ---------- Iceberg ---------- */
+  .iceberg-infographic{
+    max-width:520px;margin:30px auto 0;border-radius:var(--radius-l);
+    overflow:hidden;box-shadow:var(--shadow-m);border:1px solid var(--line);
+  }
+  .iceberg-infographic img{width:100%;height:auto;display:block;}
+
+  /* ---------- Feature / solution cards ---------- */
+  .feature-grid{display:grid;grid-template-columns:1fr;gap:16px;margin-top:30px;}
+  @media(min-width:720px){ .feature-grid{grid-template-columns:repeat(3,1fr);} }
+  .feature-card{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-m);
+    padding:24px;box-shadow:var(--shadow-s);
+  }
+  .feature-icon{
+    width:46px;height:46px;border-radius:14px;background:var(--coral-tint);color:var(--coral-deep);
+    display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+  }
+
+  /* ---------- Value pillars ---------- */
+  .pillar-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:30px;}
+  @media(min-width:680px){ .pillar-grid{grid-template-columns:1fr 1fr;} }
+  .pillar-card{
+    background:var(--mauve-tint);border-radius:var(--radius-l);padding:28px;
+  }
+  .pillar-num{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:44px;color:var(--mauve-deep);line-height:1;margin-bottom:10px;}
+  .pillar-mockup{margin-top:18px;}
+  .pillar-mockup img{width:100%;height:auto;display:block;}
+
+  /* ---------- S.E.R. method ---------- */
+  .ser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0;}
+  .ser-tile{
+    background:var(--paper);border-radius:var(--radius-m);padding:22px 10px;text-align:center;
+    box-shadow:var(--shadow-s);border:1px solid var(--line);
+  }
+  .ser-letter{font-family:"Baloo 2",sans-serif;font-weight:800;font-size:clamp(34px,7vw,54px);color:var(--mauve-deep);line-height:1;}
+  .ser-word{font-size:13px;font-weight:700;color:var(--ink-soft);margin-top:6px;}
+  .tag-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .tag{background:var(--paper);border:1px solid var(--line);border-radius:100px;padding:7px 13px;font-size:13.5px;color:var(--ink-soft);}
+
+  /* ---------- Modules (accordion) ---------- */
+  .module-mockup{max-width:480px;margin:26px auto 0;}
+  .module-mockup img{width:100%;height:auto;display:block;}
+  .module-list{max-width:720px;margin:30px auto 0;}
+  .module-acc{border-bottom:1px solid var(--line);}
+  .module-acc summary{
+    display:flex;align-items:center;gap:16px;padding:18px 4px;
+    cursor:pointer;list-style:none;
+  }
+  .module-acc summary::-webkit-details-marker{display:none;}
+  .module-num{
+    flex:none;width:38px;height:38px;border-radius:10px;background:var(--ink);color:var(--yellow);
+    font-family:"Baloo 2",sans-serif;font-weight:700;font-size:15px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .module-acc-heading{flex:1;display:flex;flex-direction:column;gap:3px;}
+  .module-tag{
+    font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--coral-deep);
+  }
+  .module-acc-title{font-weight:700;font-size:16.5px;color:var(--ink);}
+  .module-acc summary svg{flex:none;color:var(--coral);transition:transform .2s ease;}
+  .module-acc[open] summary svg{transform:rotate(180deg);}
+  .module-acc-body{padding:0 4px 22px 70px;}
+  .module-acc-body>p{color:var(--ink-soft);font-size:15px;margin:0 0 10px;font-style:italic;}
+  .module-sublist{display:flex;flex-direction:column;gap:2px;}
+  .module-sublist li{
+    position:relative;padding:7px 0 7px 18px;color:var(--ink-soft);font-size:15px;list-style:none;
+  }
+  .module-sublist li::before{
+    content:'';position:absolute;left:0;top:15px;width:6px;height:6px;
+    border-radius:50%;background:var(--coral);
+  }
+  .module-total{
+    text-align:center;font-family:"Baloo 2",sans-serif;font-weight:700;
+    font-size:17px;color:var(--ink);margin:28px auto 0;
+    background:var(--paper);border:1px solid var(--line);border-radius:100px;
+    padding:12px 24px;max-width:420px;box-shadow:var(--shadow-s);
+  }
+
+  /* ---------- How it works ---------- */
+  .steps-row{display:flex;flex-direction:column;gap:18px;margin-top:30px;}
+  @media(min-width:760px){ .steps-row{flex-direction:row;} }
+  .step-card{
+    flex:1;background:var(--paper);border-radius:var(--radius-m);padding:24px;
+    border:1px solid var(--line);box-shadow:var(--shadow-s);text-align:center;
+  }
+  .step-num{
+    width:34px;height:34px;border-radius:50%;background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 14px;
+  }
+
+  /* ---------- Bonus (accordion) ---------- */
+  .bonus-list{max-width:720px;margin:30px auto 0;}
+  .bonus-acc{border-bottom:1px solid var(--line);}
+  .bonus-acc summary{
+    display:flex;align-items:center;gap:16px;padding:18px 4px;
+    cursor:pointer;list-style:none;
+  }
+  .bonus-acc summary::-webkit-details-marker{display:none;}
+  .bonus-num{
+    flex:none;width:38px;height:38px;border-radius:10px;background:var(--yellow);color:var(--ink);
+    font-family:"Baloo 2",sans-serif;font-weight:700;font-size:16px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .bonus-acc-heading{flex:1;display:flex;flex-direction:column;gap:3px;}
+  .bonus-tag-label{
+    font-size:11.5px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--mauve-deep);
+  }
+  .bonus-acc-title{font-weight:700;font-size:16.5px;color:var(--ink);}
+  .bonus-acc summary svg{flex:none;color:var(--coral);transition:transform .2s ease;}
+  .bonus-acc[open] summary svg{transform:rotate(180deg);}
+  .bonus-acc-body{padding:0 4px 22px 70px;}
+  .bonus-acc-body>p{color:var(--ink-soft);font-size:15px;margin:0 0 12px;}
+  .bonus-sublist{display:flex;flex-direction:column;gap:2px;}
+  .bonus-sublist li{
+    position:relative;padding:7px 0 7px 18px;color:var(--ink-soft);font-size:15px;list-style:none;
+  }
+  .bonus-sublist li::before{
+    content:'';position:absolute;left:0;top:15px;width:6px;height:6px;
+    border-radius:50%;background:var(--mauve);
+  }
+  .bonus-mockup{max-width:280px;margin-top:4px;}
+  .bonus-mockup img{width:100%;height:auto;display:block;}
+
+  /* ---------- Certificate ---------- */
+  .cert-card{
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-l);
+    padding:clamp(28px,5vw,44px);box-shadow:var(--shadow-s);
+  }
+  .cert-icon{color:var(--mauve-deep);}
+
+  /* ---------- Guarantee ---------- */
+  .guarantee-card{
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;
+    background:var(--paper);border-radius:var(--radius-l);
+    padding:clamp(28px,5vw,44px);box-shadow:var(--shadow-m);
+  }
+  .guarantee-seal{width:140px;height:140px;}
+  .cert-image{width:100%;margin-top:8px;}
+  .cert-image img{
+    width:100%;height:auto;display:block;border-radius:var(--radius-m);
+    box-shadow:var(--shadow-m);border:1px solid var(--line);
+  }
+
+  /* ---------- Support ---------- */
+  .support-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:30px;}
+  @media(min-width:640px){ .support-grid{grid-template-columns:1fr 1fr;} }
+  .support-card{
+    display:flex;align-items:center;gap:16px;text-decoration:none;
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-m);
+    padding:20px;box-shadow:var(--shadow-s);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .support-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-m);}
+  .support-icon{flex:none;font-size:30px;line-height:1;}
+  .support-text{display:flex;flex-direction:column;gap:2px;}
+  .support-text strong{color:var(--ink);font-size:16px;}
+  .support-text span{color:var(--ink-soft);font-size:14px;}
+
+  /* ---------- Receipt / anchoring ---------- */
+  .receipt{
+    background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-l);
+    padding:clamp(26px,5vw,40px);box-shadow:var(--shadow-m);margin-top:30px;
+  }
+  .receipt-row{
+    display:flex;justify-content:space-between;gap:14px;padding:13px 0;
+    border-bottom:1px dashed var(--line);font-size:15.5px;
+  }
+  .receipt-row span:first-child{color:var(--ink-soft);}
+  .receipt-row span:last-child{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .receipt-total{
+    display:flex;justify-content:space-between;align-items:center;
+    margin-top:18px;background:var(--ink);color:var(--paper);
+    border-radius:var(--radius-s);padding:16px 20px;font-weight:800;font-size:18px;
+  }
+
+  /* ---------- Pricing ---------- */
+  .offer-mockup{max-width:480px;margin:8px auto 28px;}
+  .offer-mockup img{width:100%;height:auto;display:block;}
+  .price-block{
+    margin:34px auto 0;max-width:500px;text-align:center;
+    background:var(--green-tint);border-radius:var(--radius-l);
+    padding:clamp(30px,6vw,48px);box-shadow:var(--shadow-m);
+  }
+  .price-was{font-size:16.5px;color:var(--ink-soft);margin-bottom:10px;}
+  .price-was s{color:var(--coral-deep);}
+  .price-hero{display:flex;flex-direction:column;align-items:center;gap:0;margin-bottom:14px;}
+  .price-hero-top{font-family:"Baloo 2",sans-serif;font-weight:700;font-size:23px;color:var(--green-deep);}
+  .price-hero-value{
+    font-family:"Baloo 2",sans-serif;font-weight:800;color:var(--green-deep);
+    font-size:clamp(56px,13vw,84px);line-height:1.05;
+  }
+  .price-alt{font-size:20px;color:var(--ink-soft);}
+  .price-alt strong{color:var(--ink);font-weight:800;font-size:23px;}
+  .secure-seal{display:flex;justify-content:center;margin-top:18px;}
+  .secure-seal img{
+    width:100%;max-width:300px;height:auto;display:block;
+    background:var(--paper);border-radius:var(--radius-m);
+    padding:14px 20px;box-shadow:var(--shadow-s);
+  }
+  .cta-phrase{
+    text-align:center;font-weight:700;font-size:15.5px;color:var(--mauve-deep);
+    margin:0 0 16px;
+  }
+  .closing .cta-phrase{color:#F0E4F5;}
+
+  /* ---------- Testimonials ---------- */
+  .testi-grid{column-count:1;column-gap:16px;margin-top:30px;}
+  @media(min-width:640px){ .testi-grid{column-count:2;} }
+  @media(min-width:980px){ .testi-grid{column-count:3;} }
+  .testi-grid img{
+    width:100%;display:block;margin:0 0 16px;border-radius:var(--radius-m);
+    box-shadow:var(--shadow-s);border:1px solid var(--line);break-inside:avoid;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    display:flex;justify-content:space-between;align-items:center;gap:16px;
+    padding:20px 4px;font-weight:700;font-size:16.5px;cursor:pointer;list-style:none;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary svg{flex:none;color:var(--coral);transition:transform .2s ease;}
+  .faq-item[open] summary svg{transform:rotate(180deg);}
+  .faq-item p{padding:0 4px 20px;color:var(--ink-soft);font-size:15.5px;}
+
+  /* ---------- Closing ---------- */
+  .closing{
+    background:linear-gradient(155deg,var(--ink) 0%,#4A3A57 60%,var(--mauve-deep) 100%);
+    color:var(--paper);text-align:center;
+  }
+  .closing h2{color:var(--paper);}
+  .closing p{color:#E4DEEA;}
+  .price-mini{
+    display:inline-block;margin:8px auto 26px;
+    background:var(--green-tint);border-radius:var(--radius-l);
+    padding:18px 30px;box-shadow:var(--shadow-m);
+  }
+  .price-mini-value{display:block;font-family:"Baloo 2",sans-serif;font-weight:800;color:var(--green-deep);font-size:clamp(30px,6vw,42px);line-height:1.1;}
+  .price-mini-alt{display:block;font-size:15px;color:var(--ink-soft);margin-top:4px;}
+
+  /* ---------- Sticky mobile CTA ---------- */
+  .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    background:var(--paper);border-top:1px solid var(--line);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    box-shadow:0 -6px 20px rgba(46,47,66,.10);
+    transform:translateY(110%);transition:transform .3s ease;
+  }
+  .sticky-cta.is-visible{transform:translateY(0);}
+  .sticky-cta-price{
+    display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:8px;
+    font-family:"Baloo 2",sans-serif;
+  }
+  .sticky-cta-price .val{font-weight:800;font-size:18px;color:var(--green-deep);}
+  .sticky-cta-price .alt{font-size:12.5px;color:var(--ink-soft);}
+  .sticky-cta .btn-cta{width:100%;padding:15px 20px;font-size:15.5px;}
+  @media(min-width:780px){ .sticky-cta{display:none;} }
+
+  footer{padding:26px 0;text-align:center;font-size:13px;color:var(--ink-faint);}
+</style>
+</head>
+<body>
+
+<div class="urgency-bar">
+  🎉 <strong>Bônus para Novas Alunas:</strong> Inscreva-se hoje e ganhe acesso ao Grupo VIP de Professoras para trocar experiências, compartilhar situações da sala e tirar dúvidas!
+</div>
+
+<!-- 1. HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Atenção, professoras cansadas e sobrecarregadas</div>
+    <h1>Você sente como se estivesse indo para uma batalha toda vez que entra na sala de aula?</h1>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-1.webp" alt="Professora tentando dar aula em uma sala cheia de alunos agitados" width="1100" height="734" loading="eager">
+    </figure>
+
+    <p class="lead">Isso parece familiar?</p>
+
+    <div class="pain-list">
+      <div class="pain-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+        <span>Você sente aquela angústia no domingo só de pensar que amanhã começa tudo de novo?</span>
+      </div>
+      <div class="pain-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+        <span>Já chega na escola cansada, sabendo que vai precisar pedir, repetir e pedir de novo para conseguir dar sua aula?</span>
+      </div>
+      <div class="pain-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/><path d="M12 16h.01"/></svg>
+        <span>Fica triste porque sempre quis ser professora, mas hoje se pergunta por quanto tempo ainda vai conseguir continuar assim?</span>
+      </div>
+    </div>
+
+    <p class="hero-statement">Você ainda ama ensinar. O que está te esgotando é precisar passar o dia tentando controlar a sala para conseguir ensinar.</p>
+
+    <div class="cta-wrap">
+      <a href="#preco" class="btn-cta">SIM! EU QUERO VOLTAR A DAR AULA EM PAZ</a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. AMPLIFICAÇÃO DA DOR -->
+<section class="section section--paper">
+  <div class="container">
+    <h2>Parece que todo dia você começa do zero</h2>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-2.webp" alt="Professora exausta com a cabeça apoiada na mão enquanto os alunos se dispersam atrás dela" width="1100" height="733" loading="lazy">
+    </figure>
+
+    <p>Ontem você pediu silêncio, explicou os combinados e conseguiu colocar a turma em ordem.</p>
+    <p>Mas hoje começa tudo outra vez.</p>
+    <p>Aluno levantando, conversa enquanto você explica, interrupções... e você percebe que está repetindo as mesmas instruções 3, 4, 5 vezes durante a aula.</p>
+
+    <h2 style="margin-top:44px;">É difícil ensinar quando você precisa parar a aula o tempo todo</h2>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-4.webp" alt="Professora interrompe a explicação na lousa para atender um aluno com a mão levantada" width="1100" height="733" loading="lazy">
+    </figure>
+
+    <p>Você começa uma explicação e precisa interromper para pedir silêncio.</p>
+    <p>Retoma e alguém levanta.</p>
+    <p>Volta a explicar e outro aluno está fazendo alguma coisa que não deveria.</p>
+    <p>No fim, uma aula que poderia fluir vira uma sequência de:</p>
+
+    <div class="flow-row">
+      <span class="flow-chip">explicar</span><span class="flow-arrow">→</span>
+      <span class="flow-chip">interromper</span><span class="flow-arrow">→</span>
+      <span class="flow-chip">corrigir</span><span class="flow-arrow">→</span>
+      <span class="flow-chip">tentar explicar novamente</span>
+    </div>
+
+    <h2>Você já tentou mudar. Mas parece que nada dura.</h2>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-5.webp" alt="Professora reorganiza a disposição das carteiras enquanto os alunos se dispersam" width="1100" height="733" loading="lazy">
+    </figure>
+
+    <p>Você já mudou alunos de lugar, refez combinados, tentou recompensas, consequências, conversou individualmente e talvez até tenha pedido ajuda para a direção.</p>
+    <p>Algumas coisas funcionam por um dia.</p>
+    <p>Outras, por alguns minutos.</p>
+    <p>Mas os mesmos comportamentos acabam voltando.</p>
+    <p style="font-weight:700;">E no fim da semana, quem está completamente esgotada é você.</p>
+    <p class="lead">Só que existe uma razão para isso acontecer — e ela começa por entender algo que quase ninguém ensina sobre o comportamento dos seus alunos.</p>
+  </div>
+</section>
+
+<!-- 3. HISTÓRIA DA ESPECIALISTA -->
+<section class="section section--sky">
+  <div class="container">
+    <div class="bio-card">
+      <div class="bio-photo">
+        <img src="Fotos/foto-6.webp" alt="Hena Costa sorrindo em sua sala de aula" width="800" height="1263" loading="lazy">
+      </div>
+      <div>
+        <div class="bio-name">Oi, eu sou a Hena.</div>
+      </div>
+    </div>
+    <div class="bio-text">
+      <p>Sou professora e <strong>Mestra em Educação Infantil pela University of South Australia</strong>, e dediquei minha trajetória a entender o que existe por trás dos comportamentos das crianças.</p>
+      <p>Porque quando um aluno não escuta, não para sentado ou tem uma crise, quase sempre existe mais por trás do que simplesmente <strong>"ele não quer obedecer".</strong></p>
+      <p>Hoje, transformo tudo o que aprendi sobre comportamento e desenvolvimento infantil em estratégias simples para o dia a dia — e já ajudei <strong>mais de 5 mil famílias</strong> nesse caminho.</p>
+      <p>Agora, quero levar essa mesma compreensão para dentro da sua sala de aula.</p>
+      <p style="font-weight:700;">Porque você não precisa chegar ao esgotamento para aprender a lidar com os comportamentos difíceis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PROVA DE AUTORIDADE -->
+<section class="section section--paper">
+  <div class="container-wide">
+    <div class="center">
+      <div class="eyebrow">🎓 Formação internacional</div>
+    </div>
+    <div class="logo-grid">
+      <div class="logo-card">
+        <img src="Fotos/Logos/logo-south-australia.jpg" alt="University of South Australia" loading="lazy">
+        <div class="logo-caption"><strong>University of South Australia</strong><span>Mestrado em Educação Infantil</span></div>
+      </div>
+      <div class="logo-card">
+        <img src="Fotos/Logos/logo-positive-discipline.png" alt="Positive Discipline Association" loading="lazy">
+        <div class="logo-caption"><strong>Positive Discipline Association</strong><span>Educadora Parental Certificada</span></div>
+      </div>
+      <div class="logo-card logo-card--dark">
+        <img src="Fotos/Logos/logo-oxford.png" alt="University of Oxford" loading="lazy">
+        <div class="logo-caption"><strong>University of Oxford</strong><span>Certificação em História do Cérebro</span></div>
+      </div>
+      <div class="logo-card">
+        <img src="Fotos/Logos/logo-butterfly.png" alt="Butterfly Foundation" loading="lazy">
+        <div class="logo-caption"><strong>Butterfly Foundation</strong><span>Certificação em Imagem Corporal e Transtornos Alimentares na Infância</span></div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top:56px;">
+      <div class="eyebrow tone-mauve">📱 Uma das maiores referências em educação respeitosa nas redes</div>
+    </div>
+    <div class="social-proof">
+      <img src="Fotos/Logos/social-proof.webp" alt="Perfil de Hena (@ser.hena) no Instagram e TikTok" loading="lazy">
+    </div>
+    <p class="social-stat">Mais de 448 mil seguidores entre Instagram e TikTok</p>
+
+    <p class="social-stat" style="margin-top:10px;">💙 Mais de 5 mil famílias transformadas</p>
+    <p class="center" style="max-width:600px;margin:18px auto 0;color:var(--ink-soft);">Hoje, Hena transforma seus anos de estudo sobre comportamento e desenvolvimento infantil em orientações simples e práticas para quem convive diariamente com crianças.</p>
+  </div>
+</section>
+
+<!-- 5. TRANSIÇÃO DOR -> DESEJO -->
+<section class="section section--mauve">
+  <div class="container">
+    <p class="pull-quote">E se você entendesse o que existe por trás dos comportamentos difíceis, soubesse o que mudar antes deles acontecerem e como agir quando eles aparecem?</p>
+    <p class="center" style="margin-top:20px;color:var(--ink-soft);">Mesmo com alunos que hoje parecem não escutar, desafiam suas instruções ou fazem você interromper a aula o tempo todo.</p>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-7.webp" alt="Hena sentada no chão, tranquila, conduzindo uma atividade em roda com os alunos" width="1080" height="1080" loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<!-- 6. FUTURO DESEJADO -->
+<section class="section section--paper">
+  <div class="container">
+    <h2>Nos próximos 7 dias, você pode começar a construir uma sala onde...</h2>
+    <div class="check-list" style="margin-top:24px;">
+      <div class="check-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Você dá uma instrução e não precisa repeti-la 5 vezes.</span>
+      </div>
+      <div class="check-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Seus alunos entendem melhor o que fazer e o que você espera deles.</span>
+      </div>
+      <div class="check-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Você sabe como agir quando uma criança se desregula ou apresenta um comportamento difícil.</span>
+      </div>
+      <div class="check-item">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Você passa menos tempo pedindo silêncio, corrigindo e interrompendo a aula.</span>
+      </div>
+      <div class="check-item final">
+        <div class="final-row">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>E começa a voltar a dar aula em paz.</span>
+        </div>
+        <div class="final-photo">
+          <img src="Fotos/foto-8.webp" alt="Professora sorridente dando aula para uma turma engajada, com alunos participando animados" width="1100" height="733" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. APRESENTAÇÃO DO PRODUTO -->
+<section class="section section--yellow">
+  <div class="container">
+    <p class="lead center">Comece a voltar a dar aula em paz e saiba como lidar até com os comportamentos mais difíceis dentro do...</p>
+    <div class="product-plate" style="margin-top:26px;">
+      <div class="product-kicker">Workshop</div>
+      <div class="product-name">Desafios na Sala de Aula</div>
+
+      <div class="product-mockup">
+        <img src="Fotos/foto-10.webp" alt="Aula do Workshop Desafios na Sala de Aula aberta no computador e no celular" width="1080" height="820" loading="lazy">
+      </div>
+
+      <p class="product-tag">O treinamento completo, criado para professoras, que vai transformar a maneira como você entende e conduz os comportamentos dos seus alunos!</p>
+      <p class="product-tag">Aprenda o que realmente faz diferença dentro de uma sala — até diante daqueles alunos e comportamentos que hoje você não sabe mais como lidar.</p>
+      <div class="cta-wrap"><a href="#preco" class="btn-cta">QUERO VOLTAR A DAR AULA EM PAZ!</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. BIG IDEA - ICEBERG -->
+<section class="section section--paper">
+  <div class="container-wide">
+    <h2 class="center">O treinamento completo que vai além da ponta do Iceberg do Comportamento!</h2>
+    <p class="center" style="max-width:640px;margin:0 auto;">Você não precisa testar mais uma recompensa, trocar os alunos de lugar outra vez ou repetir os mesmos combinados esperando que dessa vez funcionem.</p>
+    <p class="center" style="max-width:640px;margin:12px auto 0;font-weight:700;">Você precisa aprender a enxergar o que existe por trás do comportamento.</p>
+    <p class="center" style="max-width:640px;margin:12px auto 0;">O Workshop Desafios na Sala de Aula ensina aquilo que você vê — e também aquilo que pode estar acontecendo por baixo da superfície e influenciando os comportamentos da sua turma.</p>
+
+    <figure class="iceberg-infographic">
+      <img src="Fotos/foto-9.webp" alt="Infográfico do Iceberg do Comportamento: o que você vê na superfície e o que pode estar acontecendo por baixo" width="1000" height="1000" loading="lazy">
+    </figure>
+
+  </div>
+</section>
+
+<!-- 9. EXPLICAÇÃO DA NOVA SOLUÇÃO -->
+<section class="section section--sky">
+  <div class="container">
+    <h2 class="center">Dentro do Workshop, você terá acesso ao que precisa para entender melhor sua turma e saber como agir até diante dos comportamentos mais difíceis!</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2"/><path d="M12 20v2"/><circle cx="12" cy="12" r="7"/><path d="M12 9v3l2 2"/></svg></div>
+        <h3>Aulas práticas</h3>
+        <p style="color:var(--ink-soft);font-size:15px;">Você pode começar a aplicar já na próxima aula.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg></div>
+        <h3>Recursos prontos</h3>
+        <p style="color:var(--ink-soft);font-size:15px;">Prontos para usar com seus alunos.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18"/></svg></div>
+        <h3>Método das 3 Letras</h3>
+        <p style="color:var(--ink-soft);font-size:15px;">Para enxergar além do comportamento que aparece.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. AMPLIAÇÃO DO MERCADO -->
+<section class="section section--paper">
+  <div class="container">
+    <h2 class="center">Perfeito para Professoras Iniciantes e Experientes!</h2>
+
+    <figure class="hero-photo">
+      <img src="Fotos/foto-11.webp" alt="Linha do tempo: em 7 dias, de aula desafiadora para aula em paz" width="1100" height="880" loading="lazy">
+    </figure>
+
+    <p>Os comportamentos em sala de aula mudaram muito nos últimos anos. Coisas que funcionavam antes podem já não funcionar como funcionavam.</p>
+    <p>Você não pode mais depender apenas de broncas, combinados, recompensas ou consequências para lidar com aquilo que aparece na ponta do Iceberg do Comportamento. É preciso aprender a enxergar o que também pode estar acontecendo por baixo.</p>
+    <p>É por isso que o Workshop Desafios na Sala de Aula é indicado tanto para professoras que estão começando quanto para aquelas que já têm anos de experiência.</p>
+    <p style="font-weight:700;">Você vai aprender uma nova forma de entender e lidar com os comportamentos da sua turma.</p>
+  </div>
+</section>
+
+<!-- 11. VALUE STACK -->
+<section class="section section--mauve">
+  <div class="container">
+    <h2 class="center">O que está incluso:</h2>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">50+</div>
+        <h3>Aulas Sobre os Desafios Reais da Sala de Aula</h3>
+        <p style="color:var(--ink-soft);font-size:15px;">Tenha acesso imediato a um treinamento completo, com 7 módulos sobre o que existe por trás do comportamento, preparação da sala, alunos atípicos, motivação, engajamento e aulas práticas — além de apostila e recursos para usar com seus alunos.</p>
+        <div class="pillar-mockup">
+          <img src="Fotos/foto-12.webp" alt="Aulas e materiais do Workshop abertos no computador e no celular" loading="lazy">
+        </div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">27</div>
+        <h3>Situações Reais Respondidas pela Hena</h3>
+        <p style="color:var(--ink-soft);font-size:15px;">Tenha respostas práticas para situações que acontecem de verdade: aluno que foge da sala, não quer participar, não acredita em si mesmo, não consegue trabalhar em grupo, crises, bullying, desmotivação, turmas grandes e até conversas difíceis com as famílias.</p>
+        <div class="pillar-mockup">
+          <img src="Fotos/foto-13.webp" alt="Hena respondendo a uma situação real em vídeo" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. MÉTODO DAS 3 LETRAS -->
+<section class="section section--paper">
+  <div class="container">
+    <h2 class="center">Método das 3 Letras</h2>
+    <p>O Método das 3 Letras é uma forma de compreender comportamentos difíceis olhando além daquilo que a criança está fazendo naquele momento.</p>
+    <p>Em vez de depender apenas de broncas, punições ou estratégias iguais para todos, Hena ensina um princípio simples para começar a compreender o que pode estar por trás daquele comportamento e, a partir disso, saber melhor como agir.</p>
+
+    <div class="ser-grid">
+      <div class="ser-tile"><div class="ser-letter">S</div><div class="ser-word">Serumaninhos</div></div>
+      <div class="ser-tile"><div class="ser-letter">E</div><div class="ser-word">Experiências</div></div>
+      <div class="ser-tile"><div class="ser-letter">R</div><div class="ser-word">Relacionamentos</div></div>
+    </div>
+
+    <p>Ao longo do Workshop, você aprende sobre motivadores do comportamento, experiências anteriores, respostas ao estresse, janela de tolerância, regulação emocional e relacionamentos — além de como preparar sua sala e conduzir situações difíceis de forma mais consciente.</p>
+    <p>E tudo começa com apenas 3 letras:</p>
+    <blockquote>S.E.R. — Serumaninhos são feitos de Experiências e Relacionamentos.</blockquote>
+    <p>Não se trata apenas de fazer o comportamento parar naquele momento — mas de entender o que existe por trás dele para saber onde e como agir.</p>
+  </div>
+</section>
+
+<!-- 14. OS MÓDULOS -->
+<section class="section section--sky">
+  <div class="container">
+    <h2 class="center">O que você vai encontrar dentro do Workshop</h2>
+
+    <div class="module-mockup">
+      <img src="Fotos/foto-14.webp" alt="Aula do Workshop aberta em um tablet, com Hena explicando o conteúdo" width="1080" height="820" loading="lazy">
+    </div>
+
+    <div class="module-list">
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">01</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 01 · 10 aulas</span>
+            <span class="module-acc-title">Entendendo o que Existe por Trás do Comportamento</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <p>Aqui começa o Método S.E.R. e a explicação da parte de baixo do Iceberg.</p>
+          <ul class="module-sublist">
+            <li>Dois Motivadores do Comportamento — Método S.E.R.</li>
+            <li>O que é Trauma</li>
+            <li>Tipos de Trauma</li>
+            <li>Todo Aluno Tem um "Mapa"</li>
+            <li>Respostas ao Estresse</li>
+            <li>Na Prática: Entendendo Comportamentos de Estresse</li>
+            <li>Janela de Tolerância</li>
+            <li>O Passado e os Relacionamentos do Aluno</li>
+            <li>Na Prática: Meu Aluno Traumatizado</li>
+            <li>Seja um GPS</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">02</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 02 · 8 aulas</span>
+            <span class="module-acc-title">Preparando a Sala Antes do Problema Aparecer</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <p>A lógica aqui é simples: preparar antes, para não precisar corrigir depois.</p>
+          <ul class="module-sublist">
+            <li>Segurança e Previsibilidade</li>
+            <li>Processamento Sensorial</li>
+            <li>Analisando Salas de Aula</li>
+            <li>Criando sua "Sala Precisa"</li>
+            <li>Canto da Calma</li>
+            <li>Recursos Visuais</li>
+            <li>A Melhor Rotina para sua Sala</li>
+            <li>Como Dar Instruções Efetivamente</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">03</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 03 · 5 aulas</span>
+            <span class="module-acc-title">Lidando com os Alunos</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <ul class="module-sublist">
+            <li>Administrando Energia e Emoções</li>
+            <li>Regulação Emocional</li>
+            <li>Fase de Adaptação</li>
+            <li>Co-regulação</li>
+            <li>Mudando sua Perspectiva da Criança</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">04</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 04 · 7 aulas</span>
+            <span class="module-acc-title">Melhorando Sua Prática de Ensino</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <ul class="module-sublist">
+            <li>O que Falar no Lugar de "Errou" ou "Não"</li>
+            <li>Observação dos Alunos</li>
+            <li>Rituais</li>
+            <li>Autonomia e Responsabilidade</li>
+            <li>Como "Divertizar" Atividades</li>
+            <li>Agradecendo a Escuta</li>
+            <li>Reforçando Responsabilidade</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">05</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 05 · 6 aulas</span>
+            <span class="module-acc-title">Alunos Atípicos e com Deficiência</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <ul class="module-sublist">
+            <li>Fundamentos para Lidar com Alunos Atípicos</li>
+            <li>TDAH</li>
+            <li>TOD</li>
+            <li>Autismo</li>
+            <li>Crianças Autistas Não Verbais</li>
+            <li>Recursos e Suporte de Outros Educadores</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">06</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 06 · 5 aulas</span>
+            <span class="module-acc-title">Motivação e Engajamento</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <ul class="module-sublist">
+            <li>Por que Punições Não Motivam</li>
+            <li>Recompensas: Pode ou Não?</li>
+            <li>Consequências Naturais e Lógicas</li>
+            <li>Na Prática: O que Quero Ensinar com Essa Consequência?</li>
+            <li>Se Esquecer de Tudo, Lembre Disso</li>
+          </ul>
+        </div>
+      </details>
+      <details class="module-acc">
+        <summary>
+          <span class="module-num">07</span>
+          <span class="module-acc-heading">
+            <span class="module-tag">Módulo 07 · 9 aulas</span>
+            <span class="module-acc-title">Aulas Prontas para Aplicar com os Alunos</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="module-acc-body">
+          <ul class="module-sublist">
+            <li>Introdução às Aulas</li>
+            <li>Equidade</li>
+            <li>Inteligência Emocional</li>
+            <li>Tudo Bem Cometer Erros</li>
+            <li>"Ninguém Faz X Como Você"</li>
+            <li>Você Consegue Fazer Coisas Difíceis</li>
+            <li>O Poder das Palavras</li>
+            <li>Dinâmica da Folha</li>
+            <li>E Se Todo Mundo Fizesse Isso?</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <p class="module-total">Treinamento principal: 7 módulos + 50 aulas</p>
+  </div>
+</section>
+
+<!-- 15. COMO FUNCIONA -->
+<section class="section section--mauve">
+  <div class="container">
+    <h2 class="center">Como Funciona o Workshop</h2>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <p>Imediatamente após a compra, você receberá os dados para acessar a sua área de membros.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <p>Você terá acesso aos módulos, aulas, recursos e bônus do Workshop Desafios na Sala de Aula.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <p>Assista às aulas e comece a colocar o que aprender em prática já na sua próxima aula.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16. BÔNUS -->
+<section class="section section--paper">
+  <div class="container">
+    <h2 class="center">E Você Ainda Recebe Estes Bônus!</h2>
+    <div class="bonus-list">
+      <details class="bonus-acc" open>
+        <summary>
+          <span class="bonus-num">1</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 1</span>
+            <span class="bonus-acc-title">Grupo VIP de Professoras</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>Seu espaço para trocar experiências, conversar sobre situações da sala e interagir com outras professoras.</p>
+          <div class="bonus-mockup">
+            <img src="Fotos/foto-15.webp" alt="Conversa no Grupo VIP de Professoras no WhatsApp" loading="lazy">
+          </div>
+        </div>
+      </details>
+      <details class="bonus-acc">
+        <summary>
+          <span class="bonus-num">2</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 2 · 27 situações</span>
+            <span class="bonus-acc-title">Plantão de Situações Reais</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>27 Situações Reais Respondidas pela Hena — respostas práticas para os momentos mais difíceis da sua rotina, direto ao ponto.</p>
+          <ul class="bonus-sublist">
+            <li>"Meu aluno foge da sala. O que faço?"</li>
+            <li>"Ele não quer fazer a atividade porque acha chata."</li>
+            <li>"Como recuperar a conexão depois de ter feito tudo errado?"</li>
+            <li>"Como conversar com pais que não aceitam que o filho não tirou 10?"</li>
+            <li>"Como administrar uma turma grande sem deixar alunos de lado?"</li>
+            <li>"Como agir durante a crise de uma criança?"</li>
+            <li>+ 21 outras situações reais respondidas por Hena</li>
+          </ul>
+        </div>
+      </details>
+      <details class="bonus-acc">
+        <summary>
+          <span class="bonus-num">3</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 3 · 8 recursos</span>
+            <span class="bonus-acc-title">Biblioteca de Recursos Prontos</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>Materiais prontos para usar na sua sala, sem precisar criar nada do zero.</p>
+          <ul class="bonus-sublist">
+            <li>Imprimíveis e Editáveis</li>
+            <li>Ferramentas de Aprendizado</li>
+            <li>Cartões de Bem-Estar</li>
+            <li>Cartões de Rotina</li>
+            <li>Atividades Salva-Vidas</li>
+            <li>Caderno de Atenção Plena</li>
+            <li>Chaveirinho das Emoções</li>
+            <li>Jogo do Cenário Social</li>
+          </ul>
+        </div>
+      </details>
+      <details class="bonus-acc">
+        <summary>
+          <span class="bonus-num">4</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 4 · 5 conteúdos</span>
+            <span class="bonus-acc-title">Especial Ensino Médio</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>Conteúdo dedicado a quem também dá aula para adolescentes.</p>
+          <ul class="bonus-sublist">
+            <li>Gestão Prática para Ensino Médio</li>
+            <li>Dinâmica do Pôr do Sol</li>
+            <li>Estratégia "E Se Todo Mundo Fizesse Isso?"</li>
+            <li>Atividade com Afirmações</li>
+            <li>Dinâmica do Arroz Sobre Bullying</li>
+          </ul>
+        </div>
+      </details>
+      <details class="bonus-acc">
+        <summary>
+          <span class="bonus-num">5</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 5 · 3 aulas</span>
+            <span class="bonus-acc-title">Professor e Carreira</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>Porque voltar a dar aula em paz também passa por cuidar da sua carreira.</p>
+          <ul class="bonus-sublist">
+            <li>Progressão de Carreira</li>
+            <li>Cursos Gratuitos e Recursos Bibliográficos</li>
+            <li>Canva para Professores</li>
+          </ul>
+        </div>
+      </details>
+      <details class="bonus-acc">
+        <summary>
+          <span class="bonus-num">6</span>
+          <span class="bonus-acc-heading">
+            <span class="bonus-tag-label">Bônus 6</span>
+            <span class="bonus-acc-title">Aula Resumo + Conteúdos Extras</span>
+          </span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <div class="bonus-acc-body">
+          <p>Uma forma rápida de revisar os pontos mais importantes e acessar conteúdos complementares do Workshop.</p>
+          <ul class="bonus-sublist">
+            <li>Resumo do Workshop</li>
+            <li>Importância da Música</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 17. CERTIFICADO -->
+<section class="section section--yellow">
+  <div class="container">
+    <div class="cert-card">
+      <h2>E mais: Certificado de Conclusão do Workshop</h2>
+      <p style="max-width:520px;">Além de aprender estratégias para tornar o seu dia a dia em sala mais tranquilo, ao concluir o Workshop Desafios na Sala de Aula, você também recebe seu certificado de conclusão.</p>
+      <div class="cert-image">
+        <img src="Fotos/certificado.webp" alt="Certificado de Conclusão do Workshop Desafios na Sala de Aula" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 18. VOCÊ RECEBE + PREÇO (ANCORAGEM) -->
+<section class="section section--ink" id="preco">
+  <div class="container">
+    <h2 class="center">Você recebe:</h2>
+
+    <div class="offer-mockup">
+      <img src="Fotos/foto-16.webp" alt="Tudo o que está incluso no Workshop: aulas, materiais e Grupo VIP" loading="lazy">
+    </div>
+
+    <div class="receipt">
+      <div class="receipt-row"><span>Workshop Desafios na Sala de Aula — 7 módulos + 50 aulas</span><span>R$497</span></div>
+      <div class="receipt-row"><span>Método das 3 Letras</span><span>R$197</span></div>
+      <div class="receipt-row"><span>Apostila Completa do Workshop</span><span>R$97</span></div>
+      <div class="receipt-row"><span>Certificado de Conclusão</span><span>Incluso</span></div>
+      <div class="receipt-row"><span>Bônus 1: Grupo VIP de Professoras</span><span>R$97</span></div>
+      <div class="receipt-row"><span>Bônus 2: Plantão de Situações Reais — 27 situações</span><span>R$147</span></div>
+      <div class="receipt-row"><span>Bônus 3: Biblioteca de Recursos Prontos</span><span>R$97</span></div>
+      <div class="receipt-row"><span>Bônus 4: Especial Ensino Médio</span><span>R$97</span></div>
+      <div class="receipt-row"><span>Bônus 5: Professor e Carreira</span><span>R$67</span></div>
+      <div class="receipt-row" style="border-bottom:none;"><span>Bônus 6: Aula Resumo + Conteúdos Extras</span><span>R$47</span></div>
+      <div class="receipt-total"><span>Valor total</span><span>R$1.343</span></div>
+    </div>
+
+    <div class="price-block">
+      <div class="price-was">De <s>R$1.343</s> por apenas:</div>
+      <div class="price-hero">
+        <span class="price-hero-top">12x de</span>
+        <span class="price-hero-value">R$30,72</span>
+      </div>
+      <div class="price-alt">ou <strong>R$297</strong> à vista</div>
+      <p class="cta-note">Para garantir sua vaga, basta clicar no botão abaixo e continuar para a página de pagamento.</p>
+      <div class="cta-wrap">
+        <a href="#" class="btn-cta">ESTOU PRONTA PARA VOLTAR A DAR AULA EM PAZ!</a>
+      </div>
+      <div class="secure-seal">
+        <img src="Fotos/selo-compra-segura.webp" alt="Selos de Compra Segura, Satisfação Garantida e Privacidade Protegida" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+<span id="preco-marker"></span>
+
+<!-- 20. DEPOIMENTOS -->
+<section class="section section--paper">
+  <div class="container-wide">
+    <h2 class="center">O Que as Professoras Estão Dizendo</h2>
+    <div class="testi-grid">
+      <img src="Fotos/depoimento-5.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+      <img src="Fotos/depoimento-6.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+      <img src="Fotos/depoimento-7.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+      <img src="Fotos/depoimento-8.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+      <img src="Fotos/depoimento-9.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+      <img src="Fotos/depoimento-10.webp" alt="Depoimento de aluna do Workshop no WhatsApp" loading="lazy">
+    </div>
+
+    <p class="cta-phrase">💜 Aprenda no seu tempo: você terá acesso vitalício ao conteúdo.</p>
+    <div class="cta-wrap"><a href="#preco" class="btn-cta">QUERO VOLTAR A DAR AULA EM PAZ!</a></div>
+    <div class="secure-seal">
+      <img src="Fotos/selo-compra-segura.webp" alt="Selos de Compra Segura, Satisfação Garantida e Privacidade Protegida" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 20.1 GARANTIA -->
+<section class="section section--mauve">
+  <div class="container">
+    <div class="guarantee-card">
+      <img class="guarantee-seal" src="Fotos/selo-garantia.webp" alt="Selo de Garantia de 30 dias" width="140" height="140" loading="lazy">
+      <h2>Garantia de 30 Dias</h2>
+      <p style="max-width:520px;">Você tem 30 dias de garantia para conhecer o Workshop. Se dentro desse período perceber que o treinamento não é para você, poderá solicitar o reembolso dentro das condições da garantia.</p>
+    </div>
+
+    <p class="cta-phrase" style="margin-top:32px;">💜 Aprenda no seu tempo: você terá acesso vitalício ao conteúdo.</p>
+    <div class="cta-wrap"><a href="#preco" class="btn-cta">QUERO VOLTAR A DAR AULA EM PAZ!</a></div>
+    <div class="secure-seal">
+      <img src="Fotos/selo-compra-segura.webp" alt="Selos de Compra Segura, Satisfação Garantida e Privacidade Protegida" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 21. FAQ -->
+<section class="section section--sky">
+  <div class="container">
+    <h2 class="center">Perguntas Frequentes</h2>
+    <div style="margin-top:20px;">
+      <details class="faq-item">
+        <summary>Já fiz outros cursos para professores. Como esse é diferente?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>O Workshop Desafios na Sala de Aula não entrega apenas mais uma lista de técnicas para controlar aquilo que você vê. Você aprende a olhar além da ponta do Iceberg do Comportamento, entendendo fatores que podem estar por trás das atitudes dos seus alunos e como isso muda a maneira de preparar sua sala e conduzir situações difíceis. É aí que entra o Método das 3 Letras e tudo o que Hena ensina sobre experiências, relacionamentos, estresse, regulação, previsibilidade, rotina, motivação e comportamento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Já tenho experiência como professora. Esse Workshop também é para mim?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Sim. O Workshop foi pensado tanto para professoras que estão começando quanto para aquelas que já têm anos de sala de aula. Mesmo que você já tenha seus combinados, sua rotina e suas próprias estratégias, vai aprender uma forma diferente de enxergar o que pode existir por trás dos comportamentos que continuam se repetindo.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Vou aprender o que fazer em situações específicas da minha sala?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Sim. Além das aulas, Hena responde a 27 situações reais, como aluno que foge da sala, não quer participar das atividades, está desmotivado, não consegue trabalhar em grupo, apresenta comportamentos difíceis, bullying, crises e até desafios de turmas grandes. Você também terá acesso ao Grupo VIP de Professoras, onde poderá interagir, compartilhar experiências e tirar dúvidas.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Preciso assistir a todo o Workshop antes de começar a aplicar?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Não. Existem mudanças ensinadas no Workshop que você pode começar a testar já na sua próxima aula. A proposta é que, ao longo dos primeiros 7 dias, você comece a observar seus alunos de outra forma e colocar em prática mudanças na maneira de entender, preparar e conduzir sua turma.</p>
+      </details>
+      <details class="faq-item">
+        <summary>O Workshop também aborda alunos com TDAH, TOD e autismo?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Sim. Existe um módulo dedicado a alunos com deficiência e atípicos, com aulas sobre os fundamentos para lidar com esses alunos, além de conteúdos específicos sobre TDAH, TOD, autismo e crianças autistas não verbais.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Eu recebo certificado?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Sim. Ao concluir o Workshop, você recebe seu certificado de conclusão.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E se eu comprar e perceber que não é para mim?
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </summary>
+        <p>Você tem 30 dias de garantia para conhecer o Workshop. Se dentro desse período perceber que o treinamento não é para você, poderá solicitar o reembolso dentro das condições da garantia.</p>
+      </details>
+    </div>
+
+    <p class="cta-phrase" style="margin-top:32px;">💜 Aprenda no seu tempo: você terá acesso vitalício ao conteúdo.</p>
+    <div class="cta-wrap"><a href="#preco" class="btn-cta">QUERO VOLTAR A DAR AULA EM PAZ!</a></div>
+    <div class="secure-seal">
+      <img src="Fotos/selo-compra-segura.webp" alt="Selos de Compra Segura, Satisfação Garantida e Privacidade Protegida" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 22. FECHAMENTO -->
+<section class="section closing">
+  <div class="container">
+    <h2>Não passe mais um domingo sentindo que amanhã vai começar outra batalha.</h2>
+
+    <div class="offer-mockup">
+      <img src="Fotos/foto-16.webp" alt="Tudo o que está incluso no Workshop: aulas, materiais e Grupo VIP" loading="lazy">
+    </div>
+
+    <div class="price-mini">
+      <span class="price-mini-value">12x de R$30,72</span>
+      <span class="price-mini-alt">ou R$297 à vista</span>
+    </div>
+
+    <p style="max-width:560px;margin:0 auto 8px;">Está na hora de começar a voltar a dar aula em paz — entendendo melhor seus alunos, sabendo como agir diante dos comportamentos difíceis e sem passar o dia repetindo as mesmas ordens até precisar aumentar a voz.</p>
+
+    <p class="cta-phrase" style="margin-top:24px;">💜 Aprenda no seu tempo: você terá acesso vitalício ao conteúdo.</p>
+    <div class="cta-wrap"><a href="#preco" class="btn-cta">ESTOU PRONTA PARA VOLTAR A DAR AULA EM PAZ!</a></div>
+    <div class="secure-seal">
+      <img src="Fotos/selo-compra-segura.webp" alt="Selos de Compra Segura, Satisfação Garantida e Privacidade Protegida" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 23. SUPORTE -->
+<section class="section section--sky">
+  <div class="container">
+    <h2 class="center">Ainda ficou com alguma dúvida?</h2>
+    <p class="center" style="max-width:520px;margin:0 auto;color:var(--ink-soft);">Se quiser confirmar alguma informação antes de entrar, fale com a nossa equipe. Teremos prazer em ajudar.</p>
+
+    <div class="support-grid">
+      <a class="support-card" href="https://api.whatsapp.com/message/57TSTYVN3SMGE1?autoload=1&amp;app_absent=0&amp;vtid=v3_ba07d433-0d73-4bd3-8c40-d6fe16b812a6_6a8cfce794011641887174b0_1204_s-2&amp;utm_source=organic&amp;utm_campaign=&amp;utm_medium=&amp;utm_content=&amp;utm_term=" target="_blank" rel="noopener">
+        <span class="support-icon">💬</span>
+        <span class="support-text">
+          <strong>WhatsApp</strong>
+          <span>Fale diretamente com nosso suporte</span>
+        </span>
+      </a>
+      <a class="support-card" href="mailto:contato@lumiieduca.com.br">
+        <span class="support-icon">✉️</span>
+        <span class="support-text">
+          <strong>contato@lumiieduca.com.br</strong>
+          <span>Envie sua dúvida e nossa equipe responderá você</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Workshop Desafios na Sala de Aula</footer>
+
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta-price">
+    <span class="val">12x R$30,72</span>
+    <span class="alt">ou R$297 à vista</span>
+  </div>
+  <a href="#preco" class="btn-cta">QUERO VOLTAR A DAR AULA EM PAZ!</a>
+</div>
+
+<script>
+(function(){
+  var bar = document.getElementById('stickyCta');
+  var marker = document.getElementById('preco-marker');
+  if(!bar || !marker || !('IntersectionObserver' in window)) return;
+  var reached = false;
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ reached = true; }
+      if(reached){ bar.classList.add('is-visible'); }
+    });
+  }, {threshold: 0});
+  obs.observe(marker);
+})();
+</script>
+
+</body>
+</html>
